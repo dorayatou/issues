@@ -1,0 +1,30 @@
+{
+  "name": "issues",
+  "version": "1.0.0",
+  "description": "目的：技术沉淀  \r 周期：每周一篇",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "",
+    "build": "rm -rf dist/ && rollup --config rollup.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorayatou/issues.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorayatou/issues/issues"
+  },
+  "homepage": "https://github.com/dorayatou/issues#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

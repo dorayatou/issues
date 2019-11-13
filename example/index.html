@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VM响应式系统</title>
+    <script src="../dist/vm.js"></script>
+</head>
+<body>
+    <div id="info">
+        <div>年龄： {{age}}</div>
+        <!-- <div>是否成年：{{isAdult}}</div> -->
+    </div>
+    <script>
+        var vm = new VM({
+            el: document.getElementById('#info'),
+            data: {
+                age: 16,
+                height: 170
+            },
+            computed: {
+                isAdult: function(){
+                    return this.data.age >= 16 ? '年龄达标' : '年龄不达标';
+                },
+                needBuyTicket: function() {
+                    return this.data.height >= 130 ? '成人票' : '儿童票';
+                },
+                info: function(){
+                    return this.isAdult + ':' + this.data.height;
+                }
+            },
+            render: function(key, val, oldVal) {
+                var p = document.createElement('p');
+                document.getElementById('info').append(`计算属性${key}更新了，最新值：${val}, 旧值:${oldVal}`, p);
+                console.log(`计算属性${key}更新了，最新值：${val}, 旧值:${oldVal}`);
+            }
+        });
+    </script>
+</body>
+</html>
