@@ -1,0 +1,13 @@
+@import 'bar/index.global.css';
+.red {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    background-image: url(1.jpg);
+}
+.red {
+    width: 100px;
+    height: 200px;
+    border: 1px solid red;
+    background-image: url(1.jpg);
+}

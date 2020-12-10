@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "dev": "",
+    "dev": "webpack-dev-server",
     "build": "rm -rf dist/ && rollup --config rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,14 +22,26 @@
   },
   "homepage": "https://github.com/dorayatou/issues#readme",
   "dependencies": {
+    "antd": "^4.6.6",
+    "autoresponsive-react": "^1.1.31",
     "better-scroll": "^1.15.2",
+    "element": "^0.1.4",
+    "immer": "^7.0.9",
+    "lodash": "^4.17.20",
+    "lottie-web": "^5.7.2",
     "thunkify": "^2.1.2",
+    "to-string-loader": "^1.1.6",
+    "underscore": "^1.11.0",
+    "understore": "^2.1.6",
     "web-audio-player": "^1.3.3"
   },
   "devDependencies": {
     "async--await": "^1.0.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "css-loader": "^5.0.1",
+    "javascript-state-machine": "^3.1.0",
     "promise-polyfill": "^8.1.3",
+    "style-loader": "^2.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0"

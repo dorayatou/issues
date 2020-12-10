@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 绘制图片</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="450px" height="375px"></canvas>
+    <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var img1 = new Image();
+        img1.src = 'http://127.0.0.1:5500/html/1.jpg';
+        img1.onload = function() {
+            // ctx.drawImage(img1, 0, 0, 240, 135, 30, 150, 240, 135);
+        }
+        var begin = {
+            x: 200,
+            y: 0
+        };
+        var end = {
+            x: 30,
+            y: 150
+        };
+        function y1(x) {
+            // return {
+            //     x: begin.x - x,
+            //     y: begin.y - x
+            // }
+            return x;
+        }
+        let x = begin.x, y = begin.y;
+        var n = (end.y - begin.y) / 5; // n轮 30
+        let max = 1;
+        let min = 0.8;
+        let radio = (max - min) / n; //
+        function r(c) {
+            return min - radio * c;
+        }
+        function wid(c) {
+            return 240 * (1 - radio * (n - c));
+        }
+        function hei(c) {
+            return 135 * (1 - radio * (n - c));
+        }
+        let width = 240 * min;
+        let height = 135 * min;
+        let count = 0;
+        function drawFirstImg() {
+            console.log(x, y);
+            console.log(width, height, count);
+            if (x < 50) {
+                return;
+            }
+            ctx.clearRect(x, y, 240, 135);         
+            x = x - 5;
+            // y = begin.y + y1(x);
+            y = y + 5;
+            width = width + radio * count * 10;
+            height = height + radio * count * 10;
+            count++;
+            ctx.drawImage(img1, 0, 0, 240, 135, x, y, width, height);
+            window.requestAnimationFrame(drawFirstImg);
+        }
+        // ctx.drawImage(img1, 0, 0, 240, 135, 0, 0, 240, 135);
+        drawFirstImg();
+    </script>
+</body>
+</html>
