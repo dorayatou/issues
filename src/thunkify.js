@@ -141,3 +141,48 @@ run(gen);
 //         }
 //     });
 // }
+
+/**
+ * 1、高阶函数，函数的参数是一个函数或者函数返回一个函数
+ * 2、高阶组件，一个组件返回另外一个组件
+ * 闭包：函数定义的作用域（词法作用域）和执行的作用域（函数调用栈）不一致的时候会产生闭包
+ * 2、柯里化和反柯里化，格式化函数的参数
+ */
+
+ /**
+  * 
+  * @param {*} fn 需要柯里化的函数
+  * @param {*} arr 函数fn参数收集
+  */
+ const currying = (fn, arr = []) => {
+    let len = fn.length; // fn的形参个数
+    return (...args) => { // ...剩余参数收集，此时args是一个数组
+        let concatArgs = [...arr, ...args]; // ...扩展运算符
+        if (concatArgs.length < len) { // 如果当前的参数小于fn的参数个数，说明fn的参数不够，需要继续柯里化
+            return currying(fn, concatArgs);
+        } else {
+            fn(...concatArgs); // ...扩展运算符，将concatArgs数组的参数逐个传入fn
+        }
+    }
+ }
+
+
+/**
+ * 高阶函数增强原函数功能
+ */
+
+ function say(a, b) {
+     console.log('hello', a, b);
+ }
+
+ Function.prototype.before = function(cb) {
+     return (...args) => {
+        cb();
+        this.call(null, ...args);
+     };
+ }
+ let say1 = say.before(function() {
+     console.log('before');
+ });
+
+ say1(1,2);

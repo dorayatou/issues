@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            left: 0;
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // function interval(callback, delay = 50) {
+        //     let id = setInterval(() => callback(id), delay);
+        // }
+        // interval((timeId) => {
+        //     const div = document.querySelector('div');
+        //     let left = parseInt(window.getComputedStyle(div).left);
+        //     div.style.left = left + 10 + 'px';
+        //     if (left >= 200) {
+        //         clearInterval(timeId);
+        //         interval((timeId) => {
+        //             let width = parseInt(window.getComputedStyle(div).width);
+        //             div.style.width = width -  10 + 'px';
+        //             if (width <= 20) {
+        //                 clearInterval(timeId);
+        //             }
+        //         }, 100);
+        //     }
+        // });
+        // 异步操作:定时器 
+
+        function interval(callback, delay = 50) {
+            return new Promise(resolve => {
+                let id = setInterval(() => {
+                    callback(id, resolve);
+                }, delay);
+            });
+        }
+
+        interval((timeId, resolve) => {
+            const div = document.querySelector('div');
+            let left = parseInt(window.getComputedStyle(div).left);
+            div.style.left = left + 10 + 'px';
+            if (left >= 200) {
+                clearInterval(timeId);
+                resolve(div);
+            }
+        }).then(div => {
+            console.log(div);
+            return interval((timeId, resolve) => {
+                let width = parseInt(window.getComputedStyle(div).width);
+                div.style.width = width -  10 + 'px';
+                if (width <= 20) {
+                    clearInterval(timeId);
+                    resolve(div);
+                }
+            }, 100);
+        }).then(div => {
+            div.style.backgroundColor = 'red';
+        })
+    </script>
+</body>
+</html>
