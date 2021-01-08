@@ -10,6 +10,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/i,
+                exclude: /(node_modules|bower_components)/,
+                use: ['babel-loader']
+            },
+            {
                 test: /\.(scss|css)$/i,
                 use: [
                     {

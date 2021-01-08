@@ -19,7 +19,7 @@
             "restart": true,
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
-            "program": "${workspaceFolder}/src/utils/square.js",
+            "program": "${workspaceFolder}/packages/async-generator.js",
         }
     ]
 }

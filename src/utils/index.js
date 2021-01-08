@@ -50,6 +50,11 @@ export function getQueryValue(key) {
 }
 
 const curry = function(fn) {
+    // ES6引入rest参数（...变量名）,用于获取函数的多余参数，这样就不需要使用arguments对象了
+    // rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中,args是一个数组，可以直接使用数组的方法
+    // rest参数可用于箭头函数中，arguments对象箭头函数中不存在
+    // 注意：rest参数之后不能再有其他参数（即只能是最后一个参数）
+    // 函数的length属性，不包括rest参数
     return function curriedFn(...args) {
         if (args.length < fn.length) {
             return function() {
